@@ -4,62 +4,80 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-        <div class="card">
-        
-        <div class="card-header">Tambah Data Mahasiswa
-        <a href="mahasiswa" class="btn btn-md btn-success float-right">Data Mahasiswa</a>
+            <div class="card">
+                <div class="card-header">Tambah Mahasiswa
+                <a href="{{route('mahasiswa')}}" class="btn btn-md btn-primary float-right">Data Mahasiswa</a>
+                </div>
 
-        <div class="card-body">
-        <form>
-            <div class="form-group row">
-            <label class="col-md-4 text-md-right">Nama Lengkap</label>
-            <div class="col-md-6">
-            <input type="text" name="nama" class="form-control">
-            </div>
-            </div>
-                <div class="form-group row">
-                <label class="col-md-4 text-md-right">Tempat Lahir</label>
-                <div class="col-md-6">
-                <input type="text" name="tempat_lahir" class="form-control">
-                </div>
-                </div>
-                <div class="form-group row">
-            <label class="col-md-4 text-md-right">Tanggal Lahir</label>
-            <div class="col-md-6">
-            <input type="text" name="tgl_lahir" class="form-control">
-            </div>
-            </div>
-                <div class="form-group row">
-                <label class="col-md-4 text-md-right">Telepon</label>
-                <div class="col-md-6">
-                <input type="text" name="telepon" class="form-control">
-                </div>
-                </div>
-                <div class="form-group row">
-            <label class="col-md-4 text-md-right">Alamat</label>
-            <div class="col-md-6">
-            <input type="text" name="alamat" class="form-control">
-            </div>
-            </div>
-                <div class="form-group row">
-                <label class="col-md-4 text-md-right">Gender</label>
-                <div class="col-md-6">
-                <input type="text" name="gender" class="form-control">
-                </div>
-                </div>
-                <div class="form-group row">
-            <label class="col-md-4 text-md-right">Photo</label>
-            <div class="col-md-6">
-            <input type="file" name="foto" class="form-control">
-            </div>
-            </div>
+                <div class="card-body">
+                    <form action="{{ route('simpan.mahasiswa') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                        <div class="form-row">
+                        <div class="col">
+                                <label for="">Nama Mahasiswa</label>
+                                <select name="user_id" id="user_id" class="form-control">
+                                <option value="" disabled selected>--Pilih User--</option>
+                                @foreach ($user as $u)
+                                <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                @endforeach
+                                       
+                                </select>
+                        </div>
+                        <div class="col"> 
+                                <label for="">NPM</label>
+                                <input type="number" name="npm" class="form-control" placeholder="Masukkan NPM" maxlength="8">
+                        </div>
+                        <div class="col">
+                                <label for="">Tempat Lahir</label>
+                                <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                        </div>
+                        </div>
+                        </div>
 
-        </form>
-        </div>
-        </div>
-        </div>
-        
+                        <div class="form-group">
+                        <div class="form-row">
+                        <div class="col">
+                                <label for="">Tanggal Lahir</label>
+                                <input type="date" name="tgl_lahir" class="form-control" placeholder="Tambahkan Tanggal">
+                        </div>
+                        <div class="col">
+                                <label for="">Jenis Kelamin</label>
+                                <select name="gender" id="gender" class="form-control">
+                                <option value="" disabled selected>--Pilih Jenis Kelamin--</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                                </select>
+                        </div>
+                        <div class="col">
+                                <label for="">Telepon</label>
+                                <input type="number" name="telepon" class="form-control" placeholder="Tambahkan Nomor Telepon">
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="form-row">
+                                <div class="col">
+                                <label for="">Alamat</label>
+                                <textarea name="alamat" id="alamat" cols="2" rows="3" class="form-control" style="resize: none"></textarea>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="form-row float-right">
+                                <div class="col">
+                                <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                <a href="{{ route('mahasiswa') }}" class="btn btn-md btn-danger">BATAL</a>
+                        </div>
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+</div>
 @endsection
